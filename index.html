@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="score-wrapper">
+            <div class="home-container">
+                <h1>Home</h1>
+                <p id="leadMessageHome" class="lead">is leading</p>
+                <div id="scoreBoardHome" class="score-container">
+                    <p id="scoreHome" class="score">0</p>
+                </div>
+                <p id="foulHome" class="foul-text">Foul: 0</p>
+                <div class="button-container">
+                    <div id="add1Home" class="button" onclick="add1Home()">+1</div>
+                    <div id="add2Home" class="button" onclick="add2Home()">+2</div>
+                    <div id="add3Home" class="button" onclick="add3Home()">+3</div>
+                </div>
+                <div id="addFoulHome" class="button" onclick="addFoulHome()">foul</div>
+            </div>
+            <div class="guest-container">
+                <h1>Guest</h1>
+                <p id="leadMessageGuest" class="lead">is leading</p>
+                <div id="scoreBoardGuest" class="score-container">
+                    <p id="scoreGuest" class="score">0</p>
+                </div>
+                <p id="foulGuest" class="foul-text">Foul: 0</p>
+                <div class="button-container">
+                    <div id="add1Guest" class="button" onclick="add1Guest()">+1</div>
+                    <div id="add2Guest" class="button" onclick="add2Guest()">+2</div>
+                    <div id="add3Home" class="button" onclick="add3Guest()">+3</div>
+                </div>
+                <div id="addFoulGuest" class="button" onclick="addFoulGuest()">foul</div>
+            </div>
+        </div>
+
+        <div class="new-game-container">
+            <div id="resetBtn" onclick="newGame()">New Game</div>
+            <div id="clearBtn" class="button clearHidden" onclick="clearValues()">Clear Values</div>
+        </div>
+        <div id="gameScoresContainer">
+            <h2>Previous Games:</h2>
+            <div class="game-stats-container" id="gameStatsContainer">
+                <!-- Game containers will be added here -->
+            </div>
+        </div>
+        
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
