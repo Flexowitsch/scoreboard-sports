@@ -1,13 +1,36 @@
-//initialize the scores of home and guest
+let gameNumber = 1; // Initialize the game number
 
+//initialize the scores of home and guest
 let scoreHomeValue = 0;
 let scoreGuestValue = 0;
 
+// initialize the fouls for home and guest
+
+let foulHomeValue = 0;
+let foulGuestValue = 0;
 
 //define variables that access the scores
 
-let scoreHome = document.getElementById("scoreHome");
-let scoreGuest = document.getElementById("scoreGuest");
+const scoreHome = document.getElementById("scoreHome");
+const scoreGuest = document.getElementById("scoreGuest");
+
+// define variables that access the foul counter
+
+const foulHome = document.getElementById("foulHome");
+const foulGuest = document.getElementById("foulGuest");
+// define variables to acces the individual scoreboards and lead
+
+const leadMessageHome = document.getElementById("leadMessageHome");
+const scoreBoardHome = document.getElementById("scoreBoardHome");
+
+const leadMessageGuest = document.getElementById("leadMessageGuest")
+const scoreBoardGuest = document.getElementById("scoreBoardGuest");
+
+const clearBtn = document.getElementById("clearBtn");
+const gameStatsContainer = document.getElementById("gameStatsContainer");
+const homeScoreStat = document.getElementById("homeScoreStat");
+const guestScoreStat = document.getElementById("guestScoreStat");
+const gameScoresContainer = document.getElementById("gameScoresContainer")
 
 //define functions to increase the score for home and guest
 
@@ -48,15 +71,7 @@ function add3Guest() {
 }
 
 
-// initialize the fouls for home and guest
 
-let foulHomeValue = 0;
-let foulGuestValue = 0;
-
-// define variables that access the foul counter
-
-let foulHome = document.getElementById("foulHome");
-let foulGuest = document.getElementById("foulGuest");
 
 //define functions to update the foul count for home and guest
 
@@ -85,6 +100,7 @@ function disqualification() {
         leadMessageGuest.classList.add("gameMessage");
         leadMessageGuest.textContent = "Guest is the Winner";
         scoreBoardGuest.classList.add("leadingScoreboard");
+        disableButtons()
     } else if (foulGuestValue >= 9) {
         // adding and removing classes for the display of guest
         scoreBoardGuest.classList.remove("leadingScoreboard");
@@ -95,6 +111,7 @@ function disqualification() {
         leadMessageGuest.classList.add("gameMessage");
         leadMessageGuest.classList.add("disqualified");
         leadMessageGuest.textContent = "Guest is disqualified";
+        disableButtons()
         
         
     }
@@ -103,13 +120,6 @@ function disqualification() {
 
 
 
-// define variables to acces the individual scoreboards and lead
-
-let leadMessageHome = document.getElementById("leadMessageHome");
-let scoreBoardHome = document.getElementById("scoreBoardHome");
-
-let leadMessageGuest = document.getElementById("leadMessageGuest")
-let scoreBoardGuest = document.getElementById("scoreBoardGuest");
 
 // logic for adding the classes highlighting the leader
 
@@ -119,11 +129,17 @@ function updateLeader() {
       scoreBoardHome.classList.add("leadingScoreboard");
       leadMessageGuest.classList.remove("gameMessage");
       scoreBoardGuest.classList.remove("leadingScoreboard");
+      // #######################
+      leadMessageHome.textContent = "Home is the Winner";
+      // #######################
     } else if (scoreHomeValue < scoreGuestValue) {
         leadMessageHome.classList.remove("gameMessage");
         scoreBoardHome.classList.remove("leadingScoreboard");
         leadMessageGuest.classList.add("gameMessage");
         scoreBoardGuest.classList.add("leadingScoreboard");
+        // #######################
+        leadMessageGuest.textContent = "Guest is the Winner";
+        // #######################
     } else if (scoreHomeValue === scoreGuestValue ){
         leadMessageHome.classList.remove("gameMessage");
         scoreBoardHome.classList.remove("leadingScoreboard");
@@ -139,15 +155,12 @@ function updateLeader() {
 
 
 
-let clearBtn = document.getElementById("clearBtn");
-let gameStatsContainer = document.getElementById("gameStatsContainer");
-let homeScoreStat = document.getElementById("homeScoreStat");
-let guestScoreStat = document.getElementById("guestScoreStat");
-let gameScoresContainer = document.getElementById("gameScoresContainer")
-
-let gameNumber = 1; // Initialize the game number
 
 function newGame() {
+    // ###############
+    enableButtons()
+    // ###############
+    
     // show game score container
     gameScoresContainer.style.display = "block";
 
@@ -179,6 +192,10 @@ function newGame() {
     scoreBoardGuest.classList.remove("leadingScoreboard");
 
     // Reset the fouls
+    // 
+    leadMessageHome.classList.remove("disqualified");
+    leadMessageGuest.classList.remove("disqualified");
+    // 
     foulHomeValue = 0;
     foulGuestValue = 0;
     foulHome.textContent = "Foul: " + foulHomeValue;
@@ -192,7 +209,9 @@ function newGame() {
 
 
 function clearValues() {
-
+    // ###############
+    enableButtons()
+    // ###############
     //hide the gameScoresContainer
     gameScoresContainer.style.display = "none";
 
@@ -225,4 +244,30 @@ function clearValues() {
 
     // Hide the clear button
     clearBtn.classList.add("clearHidden");
+}
+
+function disableButtons() {
+    document.getElementById('add1Home').classList.add('disabled')
+    document.getElementById('add2Home').classList.add('disabled')
+    document.getElementById('add3Home').classList.add('disabled')
+    
+    document.getElementById('add1Guest').classList.add('disabled')
+    document.getElementById('add2Guest').classList.add('disabled')
+    document.getElementById('add3Guest').classList.add('disabled')
+    
+    document.getElementById('addFoulHome').classList.add('disabled')
+    document.getElementById('addFoulGuest').classList.add('disabled')
+}
+
+function enableButtons() {
+    document.getElementById('add1Home').classList.remove('disabled')
+    document.getElementById('add2Home').classList.remove('disabled')
+    document.getElementById('add3Home').classList.remove('disabled')
+    
+    document.getElementById('add1Guest').classList.remove('disabled')
+    document.getElementById('add2Guest').classList.remove('disabled')
+    document.getElementById('add3Guest').classList.remove('disabled')
+    
+    document.getElementById('addFoulHome').classList.remove('disabled')
+    document.getElementById('addFoulGuest').classList.remove('disabled')
 }
